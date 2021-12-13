@@ -35,7 +35,7 @@ public class MoverRobot {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -47,27 +47,27 @@ public class MoverRobot {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un objetivo
+			
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot - 1).set(colRobot, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -78,43 +78,43 @@ public class MoverRobot {
 	public ArrayList<ArrayList<String>> moverRobotAbajo(boolean puedoMover,
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("#") && puedoMover) {
-			// Realizo movimiento de caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -126,14 +126,14 @@ public class MoverRobot {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "#");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -141,7 +141,7 @@ public class MoverRobot {
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("*") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -153,12 +153,12 @@ public class MoverRobot {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("!")) {
-			// Me pongo sobre un objetivo
+		
 			habitacionTemp.get(filaRobot).set(colRobot - 1, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -170,23 +170,23 @@ public class MoverRobot {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "#");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -198,12 +198,12 @@ public class MoverRobot {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("!")) {
-			// Me pongo sobre un objetivo
+		
 			habitacionTemp.get(filaRobot).set(colRobot + 1, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -236,7 +236,7 @@ public class MoverRobot {
 	public String compruebaSiguiente(ArrayList<ArrayList<String>> m, int fila, int colunma) {
 
 		if(m.get(fila).get(colunma).equals("!")) {
-			//Es correcto
+		
 			return "1";
 		} else {
 			return "0";
@@ -245,7 +245,7 @@ public class MoverRobot {
 
 	public String compruebaSiguineteNormal(ArrayList<ArrayList<String>> m, int fila, int colunma) {
 		if(m.get(fila).get(colunma).equals("-")) {
-			//Es correcto
+			
 			return "1";
 		} else {
 			return "0";
