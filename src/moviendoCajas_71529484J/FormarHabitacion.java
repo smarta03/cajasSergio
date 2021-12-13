@@ -330,8 +330,6 @@ public class FormarHabitacion {
 			return anchuraRecursivo(filaC, colC, incF, incC, habitacionesAux, caminosAux, ++i);
 		}
 	}
-
-
 	
 	private static String habitacionesSonIguales(ArrayList<ArrayList<ArrayList<String>>> habitaciones,
 			ArrayList<ArrayList<String>> habitacionNueva) {
