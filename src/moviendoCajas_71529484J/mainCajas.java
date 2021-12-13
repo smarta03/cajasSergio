@@ -25,7 +25,7 @@ public class mainCajas {
 			formarHabitacion();
 
 		} else {
-			System.out.println("Entrada mal formada");
+			System.out.println("Entrada mal formada.");
 		}
 	}
 
@@ -42,11 +42,9 @@ public class mainCajas {
 			System.out.println(caminosFinalesComprobados.get(0).length());
 			System.out.println(caminosFinalesComprobados.get(0));
 		}  else {
-			System.out.println("No tiene solucion");
+			System.out.println("No hay solución.");
 		}
 
-//		ArrayList<ArrayList<ArrayList<String>>> temp = new ArrayList<ArrayList<ArrayList<String>>>();
-//		temp = habitaciones;
 	}
 
 	private static void lanzarCamino(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
@@ -62,13 +60,11 @@ public class mainCajas {
 			if (esSolucion(habitacionTemp)=="1") {
 				solucionesParc.add(habitacionTemp);
 				caminosFinalesComprobados.add(caminoActual);
-				//System.out.println(caminoActual);
+
 				break;
 			} else {
 				if (espacio < caminoActual.length()) {
 					espacio = caminoActual.length();
-					//System.out.println(caminoActual);
-					//System.out.println(espacio);
 				}
 
 				// Localizar cajas y caminos
@@ -84,14 +80,13 @@ public class mainCajas {
 		String cajaValida = cajaEnEsquina(habitacionTemp, cajas);
 		if (cajaValida=="1") {
 			
-			// Todas las cajas y alamceanr el camino mas corto a ellas 
 			ArrayList<ArrayList<ArrayList<String>>> habitacionesAux = new ArrayList<ArrayList<ArrayList<String>>>();
 			ArrayList<String> caminosAux = new ArrayList<String>();
 			for (int i = 0; i < cajas.size(); i++) {
 				int filaC = cajas.get(i).get(0);
 				int colC = cajas.get(i).get(1);
 
-				// Comprobar la posicion derecha si es libre y si es correcto lo llevo alli
+				
 				int pos = 0;
 				habitacionesAux.add(habitacionTemp);
 				caminosAux.add(caminoActual);
@@ -224,7 +219,7 @@ public class mainCajas {
 	}
 
 	private static String cajaEnEsquina(ArrayList<ArrayList<String>> h, ArrayList<ArrayList<Integer>> cajas) {
-		// TODO Auto-generated method stub
+	
 		for (int i = 0; i < cajas.size(); i++) {
 			int filaC = cajas.get(i).get(0);
 			int colC = cajas.get(i).get(1);
@@ -373,7 +368,7 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un objetivo
+			
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -385,27 +380,27 @@ public class mainCajas {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un objetivo
+			
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot - 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot - 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot - 1).set(colRobot, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot - 1).get(colRobot).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot - 1).set(colRobot, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -416,43 +411,43 @@ public class mainCajas {
 	private static ArrayList<ArrayList<String>> moverRobotAbajo(boolean puedoMover,
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("#") && puedoMover) {
-			// Realizo movimiento de caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "*");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot + 2, colRobot)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot + 2).set(colRobot, "#");
 				habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot + 1).set(colRobot, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot + 1).get(colRobot).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot + 1).set(colRobot, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -464,14 +459,14 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "#");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -479,7 +474,7 @@ public class mainCajas {
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("*") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot - 2)=="1") {
-				// Es un objetivo
+			
 				habitacionTemp.get(filaRobot).set(colRobot - 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot - 1, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -491,12 +486,12 @@ public class mainCajas {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot).set(colRobot - 1, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot).get(colRobot - 1).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot).set(colRobot - 1, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -508,23 +503,23 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionTemp, int filaRobot, int colRobot) {
 		if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("#") && puedoMover) {
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 
 			} else if (compruebaSiguineteNormal(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un movimiento normal
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "#");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("*") && puedoMover) {
-			// Realizo el movimiento de una caja
+			
 			if (compruebaSiguiente(habitacionTemp, filaRobot, colRobot + 2)=="1") {
-				// Es un objetivo
+				
 				habitacionTemp.get(filaRobot).set(colRobot + 2, "*");
 				habitacionTemp.get(filaRobot).set(colRobot + 1, "+");
 				robotAInicio(habitacionTemp, filaRobot, colRobot);
@@ -536,12 +531,12 @@ public class mainCajas {
 				return habitacionTemp;
 			}
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("-")) {
-			// Realizo un movimiento normal
+			
 			habitacionTemp.get(filaRobot).set(colRobot + 1, "@");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
 		} else if (habitacionTemp.get(filaRobot).get(colRobot + 1).equals("!")) {
-			// Me pongo sobre un objetivo
+			
 			habitacionTemp.get(filaRobot).set(colRobot + 1, "+");
 			robotAInicio(habitacionTemp, filaRobot, colRobot);
 			return habitacionTemp;
@@ -560,7 +555,7 @@ public class mainCajas {
 	private static String compruebaSiguiente(ArrayList<ArrayList<String>> m, int fila, int colunma) {
 		
 		if(m.get(fila).get(colunma).equals("!")) {
-			//Es correcto
+			
 			return "1";
 		} else {
 			return "0";
@@ -569,7 +564,7 @@ public class mainCajas {
 
 	private static String compruebaSiguineteNormal(ArrayList<ArrayList<String>> m, int fila, int colunma) {
 		if(m.get(fila).get(colunma).equals("-")) {
-			//Es correcto
+			
 			return "1";
 		} else {
 			return "0";

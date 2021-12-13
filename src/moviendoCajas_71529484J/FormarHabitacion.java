@@ -13,7 +13,7 @@ public class FormarHabitacion {
 		matrizTemp = matriz;
 		caminosFinalesComprobados = caminosFinales;
 		solucionesParc = soluciones;
-		// TODO Auto-generated constructor stub
+
 	}
 
 	private static void formarHabitacion() {
@@ -31,9 +31,6 @@ public class FormarHabitacion {
 		}  else {
 			System.out.println("No tiene solucion");
 		}
-
-//		ArrayList<ArrayList<ArrayList<String>>> temp = new ArrayList<ArrayList<ArrayList<String>>>();
-//		temp = habitaciones;
 	}
 
 	private static void lanzarCamino(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
@@ -49,13 +46,10 @@ public class FormarHabitacion {
 			if (esSolucion(habitacionTemp)=="1") {
 				solucionesParc.add(habitacionTemp);
 				caminosFinalesComprobados.add(caminoActual);
-				//System.out.println(caminoActual);
 				break;
 			} else {
 				if (espacio < caminoActual.length()) {
 					espacio = caminoActual.length();
-					//System.out.println(caminoActual);
-					//System.out.println(espacio);
 				}
 
 				// Localizar cajas y caminos
@@ -211,7 +205,7 @@ public class FormarHabitacion {
 	}
 
 	private static String cajaEnEsquina(ArrayList<ArrayList<String>> h, ArrayList<ArrayList<Integer>> cajas) {
-		// TODO Auto-generated method stub
+		
 		for (int i = 0; i < cajas.size(); i++) {
 			int filaC = cajas.get(i).get(0);
 			int colC = cajas.get(i).get(1);
@@ -252,7 +246,7 @@ public class FormarHabitacion {
 				if (caminos.get(i).length() > camino.length()) {
 					caminos.set(i, camino);
 					utilizada.set(i, false);
-					// return false;�
+				
 					return "1";
 				}
 				return "1";
