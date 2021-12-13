@@ -161,8 +161,6 @@ public class LeerEntradaHabitacion {
 			entradaBienFormada = false;
 		}
 
-		System.out.println(n + " " + m);
-
 		String temp = "";
 		int valorLinea = 0;
 
