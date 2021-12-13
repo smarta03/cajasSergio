@@ -32,10 +32,11 @@ public class mainCajas {
 	private static void formarHabitacion() {
 		ArrayList<ArrayList<ArrayList<String>>> habitaciones = new ArrayList<ArrayList<ArrayList<String>>>();
 		ArrayList<String> caminos = new ArrayList<String>();
-		ArrayList<Boolean> usada = new ArrayList<Boolean>();
+		ArrayList<String> usada = new ArrayList<String>();
 		habitaciones.add(matrizTemp);
 		caminos.add("");
-		usada.add(false);
+		//0 es false y 1 true
+		usada.add("0");
 		lanzarCamino(habitaciones, caminos, usada);
 		
 		if(caminosFinalesComprobados.size()!=0) {
@@ -48,14 +49,14 @@ public class mainCajas {
 	}
 
 	private static void lanzarCamino(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada) {
+			ArrayList<String> usada) {
 
 		int espacio = 0;
 		for (int l = 0; l < habitaciones.size(); l++) {
-			int tocaAhora = buscarHabitacionSiguiente(caminos, utilizada);
+			int tocaAhora = buscarHabitacionSiguiente(caminos, usada);
 			ArrayList<ArrayList<String>> habitacionTemp = habitaciones.get(tocaAhora);
 			String caminoActual = caminos.get(tocaAhora);
-			utilizada.set(tocaAhora, true);
+			usada.set(tocaAhora, "1");
 
 			if (esSolucion(habitacionTemp)=="1") {
 				solucionesParc.add(habitacionTemp);
@@ -68,13 +69,13 @@ public class mainCajas {
 				}
 
 				// Localizar cajas y caminos
-				localizarCajasyCaminos(habitaciones, caminos, utilizada, habitacionTemp, caminoActual);
+				localizarCajasyCaminos(habitaciones, caminos, usada, habitacionTemp, caminoActual);
 			}
 		}
 	}
 
 	private static void localizarCajasyCaminos(ArrayList<ArrayList<ArrayList<String>>> habitaciones,
-			ArrayList<String> caminos, ArrayList<Boolean> utilizada, ArrayList<ArrayList<String>> habitacionTemp,
+			ArrayList<String> caminos, ArrayList<String> usada, ArrayList<ArrayList<String>> habitacionTemp,
 			String caminoActual) {
 		ArrayList<ArrayList<Integer>> cajas = buscarCajas(habitacionTemp);
 		String cajaValida = cajaEnEsquina(habitacionTemp, cajas);
@@ -87,7 +88,7 @@ public class mainCajas {
 				int colC = cajas.get(i).get(1);
 
 				
-				int pos = 0;
+				int posicion = 0;
 				habitacionesAux.add(habitacionTemp);
 				caminosAux.add(caminoActual);
 				if ((habitacionTemp.get(filaC).get(colC + 1).equals("-")
@@ -97,14 +98,14 @@ public class mainCajas {
 						&& (habitacionTemp.get(filaC).get(colC - 1).equals("-")
 								|| habitacionTemp.get(filaC).get(colC - 1).equals("!"))) {
 					
-					libreDerecha(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
+					libreDerecha(habitaciones, caminos, usada, habitacionesAux, caminosAux, filaC, colC);
 
 				}
 				habitacionesAux = new ArrayList<ArrayList<ArrayList<String>>>();
 				caminosAux = new ArrayList<String>();
 				habitacionesAux.add(habitacionTemp);
 				caminosAux.add(caminoActual);
-				pos = 0;
+				posicion = 0;
 				if ((habitacionTemp.get(filaC).get(colC - 1).equals("-")
 						|| habitacionTemp.get(filaC).get(colC - 1).equals("!")
 						|| habitacionTemp.get(filaC).get(colC - 1).equals("@")
@@ -112,13 +113,13 @@ public class mainCajas {
 						&& (habitacionTemp.get(filaC).get(colC + 1).equals("-")
 								|| habitacionTemp.get(filaC).get(colC + 1).equals("!"))) {
 					
-					libreIzq(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
+					libreIzq(habitaciones, caminos, usada, habitacionesAux, caminosAux, filaC, colC);
 				}
 				habitacionesAux = new ArrayList<ArrayList<ArrayList<String>>>();
 				caminosAux = new ArrayList<String>();
 				habitacionesAux.add(habitacionTemp);
 				caminosAux.add(caminoActual);
-				pos = 0;
+				posicion = 0;
 				if ((habitacionTemp.get(filaC + 1).get(colC).equals("-")
 						|| habitacionTemp.get(filaC + 1).get(colC).equals("!")
 						|| habitacionTemp.get(filaC + 1).get(colC).equals("@")
@@ -126,13 +127,13 @@ public class mainCajas {
 						&& (habitacionTemp.get(filaC - 1).get(colC).equals("-")
 								|| habitacionTemp.get(filaC - 1).get(colC).equals("!"))) {
 					
-					libreAbajo(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
+					libreAbajo(habitaciones, caminos, usada, habitacionesAux, caminosAux, filaC, colC);
 				}
 				habitacionesAux = new ArrayList<ArrayList<ArrayList<String>>>();
 				caminosAux = new ArrayList<String>();
 				habitacionesAux.add(habitacionTemp);
 				caminosAux.add(caminoActual);
-				pos = 0;
+				posicion = 0;
 				if ((habitacionTemp.get(filaC - 1).get(colC).equals("-")
 						|| habitacionTemp.get(filaC - 1).get(colC).equals("!")
 						|| habitacionTemp.get(filaC - 1).get(colC).equals("@")
@@ -140,7 +141,7 @@ public class mainCajas {
 						&& (habitacionTemp.get(filaC + 1).get(colC).equals("-")
 								|| habitacionTemp.get(filaC + 1).get(colC).equals("!"))) {
 					
-					libreArriba(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
+					libreArriba(habitaciones, caminos, usada, habitacionesAux, caminosAux, filaC, colC);
 				}
 				habitacionesAux = new ArrayList<ArrayList<ArrayList<String>>>();
 				caminosAux = new ArrayList<String>();
@@ -149,25 +150,25 @@ public class mainCajas {
 	}
 
 	private static void libreArriba(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
+			ArrayList<String> usada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
 			ArrayList<String> caminosAux, int filaC, int colC) {
-		int pos;
-		pos = anchuraRecursivo(filaC, colC, -1, 0, habitacionesAux, caminosAux, 0);
-		if (pos != -1) {
-			ArrayList<ArrayList<String>> habitacionPrincipal = empujaCaja(habitacionesAux.get(pos),
-					caminosAux.get(pos), "b");
+		int posicion;
+		posicion = anchuraRecursivo(filaC, colC, -1, 0, habitacionesAux, caminosAux, 0);
+		if (posicion != -1) {
+			ArrayList<ArrayList<String>> habitacionPrincipal = empujaCaja(habitacionesAux.get(posicion),
+					caminosAux.get(posicion), "b");
 
-			if (habitacionIgual(habitaciones, habitacionPrincipal, caminosAux.get(pos) + "B", caminos,
-					utilizada)=="0") {
+			if (habitacionIgual(habitaciones, habitacionPrincipal, caminosAux.get(posicion) + "B", caminos,
+					usada)=="0") {
 				habitaciones.add(habitacionPrincipal);
-				caminos.add(caminosAux.get(pos) + "B");
-				utilizada.add(false);
+				caminos.add(caminosAux.get(posicion) + "B");
+				usada.add("0");
 			}
 		}
 	}
 
 	private static void libreAbajo(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
+			ArrayList<String> usada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
 			ArrayList<String> caminosAux, int filaC, int colC) {
 		int pos;
 		pos = anchuraRecursivo(filaC, colC, 1, 0, habitacionesAux, caminosAux, 0);
@@ -175,17 +176,17 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionPrincipal = habitacionesAux.get(pos);
 			habitacionPrincipal = empujaCaja(habitacionPrincipal, caminosAux.get(pos), "a");
 			if (habitacionIgual(habitaciones, habitacionPrincipal, caminosAux.get(pos) + "A", caminos,
-					utilizada)=="0") {
+					usada)=="0") {
 
 				habitaciones.add(habitacionPrincipal);
 				caminos.add(caminosAux.get(pos) + "A");
-				utilizada.add(false);
+				usada.add("0");
 			}
 		}
 	}
 
 	private static void libreIzq(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
+			ArrayList<String> usada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
 			ArrayList<String> caminosAux, int filaC, int colC) {
 		int pos;
 		pos = anchuraRecursivo(filaC, colC, 0, -1, habitacionesAux, caminosAux, 0);
@@ -193,16 +194,16 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionPrincipal = empujaCaja(habitacionesAux.get(pos),
 					caminosAux.get(pos), "d");
 			if (habitacionIgual(habitaciones, habitacionPrincipal, caminosAux.get(pos) + "D", caminos,
-					utilizada)=="0") {
+					usada)=="0") {
 				habitaciones.add(habitacionPrincipal);
 				caminos.add(caminosAux.get(pos) + "D");
-				utilizada.add(false);
+				usada.add("0");
 			}
 		}
 	}
 
 	private static void libreDerecha(ArrayList<ArrayList<ArrayList<String>>> habitaciones, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
+			ArrayList<String> usada, ArrayList<ArrayList<ArrayList<String>>> habitacionesAux,
 			ArrayList<String> caminosAux, int filaC, int colC) {
 		int pos;
 		pos = anchuraRecursivo(filaC, colC, 0, 1, habitacionesAux, caminosAux, 0);
@@ -210,10 +211,10 @@ public class mainCajas {
 			ArrayList<ArrayList<String>> habitacionPrincipal = empujaCaja(habitacionesAux.get(pos),
 					caminosAux.get(pos), "i");
 			if (habitacionIgual(habitaciones, habitacionPrincipal, caminosAux.get(pos) + "I", caminos,
-					utilizada)=="0") {
+					usada)=="0") {
 				habitaciones.add(habitacionPrincipal);
 				caminos.add(caminosAux.get(pos) + "I");
-				utilizada.add(false);
+				usada.add("0");
 			}
 		}
 	}
@@ -245,7 +246,7 @@ public class mainCajas {
 
 	private static String habitacionIgual(ArrayList<ArrayList<ArrayList<String>>> habitaciones,
 			ArrayList<ArrayList<String>> habitacionPrincipal, String camino, ArrayList<String> caminos,
-			ArrayList<Boolean> utilizada) {
+			ArrayList<String> usada) {
 		for (int i = 0; i < habitaciones.size(); i++) {
 			String resultado = "1";
 			for (int j = 0; j < habitaciones.get(i).size(); j++) {
@@ -259,7 +260,7 @@ public class mainCajas {
 			if (resultado=="1") {
 				if (caminos.get(i).length() > camino.length()) {
 					caminos.set(i, camino);
-					utilizada.set(i, false);
+					usada.set(i, "0");
 					// return false;�
 					return "1";
 				}
@@ -269,10 +270,10 @@ public class mainCajas {
 		return "0";
 	}
 
-	private static int buscarHabitacionSiguiente(ArrayList<String> caminos, ArrayList<Boolean> utilizada) {
+	private static int buscarHabitacionSiguiente(ArrayList<String> caminos, ArrayList<String> usada) {
 		int min = Integer.MAX_VALUE, pos = -1;
 		for (int i = 0; i < caminos.size(); i++) {
-			if (min > caminos.get(i).length() && !utilizada.get(i)) {
+			if (min > caminos.get(i).length() && usada.get(i)=="0") {
 				min = caminos.get(i).length();
 				pos = i;
 			}
@@ -619,18 +620,18 @@ public class mainCajas {
 		return null;
 	}
 
-	private static ArrayList<Integer> encuentraRobot(ArrayList<ArrayList<String>> m) {
-		ArrayList<Integer> sol = new ArrayList<Integer>();
-		for (int i = 0; i < m.size(); i++) {
-			for (int j = 0; j < m.get(i).size(); j++) {
-				if (m.get(i).get(j).equals("@") || m.get(i).get(j).equals("+")) {
-					sol.add(i);
-					sol.add(j);
+	private static ArrayList<Integer> encuentraRobot(ArrayList<ArrayList<String>> habitacion) {
+		ArrayList<Integer> solucion = new ArrayList<Integer>();
+		for (int i = 0; i < habitacion.size(); i++) {
+			for (int j = 0; j < habitacion.get(i).size(); j++) {
+				if (habitacion.get(i).get(j).equals("@") || habitacion.get(i).get(j).equals("+")) {
+					solucion.add(i);
+					solucion.add(j);
 					break;
 				}
 			}
 		}
-		return sol;
+		return solucion;
 	}
 
 	private static ArrayList<ArrayList<String>> clonarHabitacion(ArrayList<ArrayList<String>> m) {
