@@ -227,23 +227,23 @@ public class mainCajas {
 		}
 	}
 
-	private static char cajaEnEsquina(ArrayList<ArrayList<String>> h, ArrayList<ArrayList<Integer>> cajas) {
+	private static char cajaEnEsquina(ArrayList<ArrayList<String>> caja, ArrayList<ArrayList<Integer>> cajas) {
 	
 		for (int i = 0; i < cajas.size(); i++) {
 			int filaC = cajas.get(i).get(0);
 			int colC = cajas.get(i).get(1);
-			if (h.get(filaC).get(colC).equals("#")) {
-				if (h.get(filaC + 1).get(colC).equals("1") || h.get(filaC + 1).get(colC).equals("0")) {
-					if (h.get(filaC).get(colC + 1).equals("1") || h.get(filaC).get(colC + 1).equals("0")) {
+			if (caja.get(filaC).get(colC).equals("#")) {
+				if (caja.get(filaC + 1).get(colC).equals("1") || caja.get(filaC + 1).get(colC).equals("0")) {
+					if (caja.get(filaC).get(colC + 1).equals("1") || caja.get(filaC).get(colC + 1).equals("0")) {
 						return '0';
-					} else if (h.get(filaC).get(colC - 1).equals("1") || h.get(filaC + 1).get(colC - 1).equals("0")) {
+					} else if (caja.get(filaC).get(colC - 1).equals("1") || caja.get(filaC).get(colC - 1).equals("0")) {
 						return '0';
 					}
 				}
-				if (h.get(filaC - 1).get(colC).equals("1") || h.get(filaC - 1).get(colC).equals("0")) {
-					if (h.get(filaC).get(colC + 1).equals("1") || h.get(filaC).get(colC + 1).equals("0")) {
+				if (caja.get(filaC - 1).get(colC).equals("1") || caja.get(filaC - 1).get(colC).equals("0")) {
+					if (caja.get(filaC).get(colC + 1).equals("1") || caja.get(filaC).get(colC + 1).equals("0")) {
 						return '0';
-					} else if (h.get(filaC).get(colC - 1).equals("1") || h.get(filaC + 1).get(colC - 1).equals("0")) {
+					} else if (caja.get(filaC).get(colC - 1).equals("1") || caja.get(filaC + 1).get(colC - 1).equals("0")) {
 						return '0';
 					}
 				}
