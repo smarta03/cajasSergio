@@ -81,7 +81,9 @@ public class FormarHabitacion {
 						|| habitacionTemp.get(filaC).get(colC + 1).equals("@")
 						|| habitacionTemp.get(filaC).get(colC + 1).equals("+"))
 						&& (habitacionTemp.get(filaC).get(colC - 1).equals("-")
-								|| habitacionTemp.get(filaC).get(colC - 1).equals("!"))) {
+								|| habitacionTemp.get(filaC).get(colC - 1).equals("!")
+								|| habitacionTemp.get(filaC).get(colC - 1).equals("@")
+								|| habitacionTemp.get(filaC).get(colC - 1).equals("+"))) {
 					
 					libreDerecha(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
 
@@ -96,7 +98,9 @@ public class FormarHabitacion {
 						|| habitacionTemp.get(filaC).get(colC - 1).equals("@")
 						|| habitacionTemp.get(filaC).get(colC - 1).equals("+"))
 						&& (habitacionTemp.get(filaC).get(colC + 1).equals("-")
-								|| habitacionTemp.get(filaC).get(colC + 1).equals("!"))) {
+								|| habitacionTemp.get(filaC).get(colC + 1).equals("!")
+								|| habitacionTemp.get(filaC).get(colC + 1).equals("@")
+								|| habitacionTemp.get(filaC).get(colC + 1).equals("+"))) {
 					
 					libreIzq(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
 				}
@@ -110,7 +114,9 @@ public class FormarHabitacion {
 						|| habitacionTemp.get(filaC + 1).get(colC).equals("@")
 						|| habitacionTemp.get(filaC + 1).get(colC).equals("+"))
 						&& (habitacionTemp.get(filaC - 1).get(colC).equals("-")
-								|| habitacionTemp.get(filaC - 1).get(colC).equals("!"))) {
+								|| habitacionTemp.get(filaC - 1).get(colC).equals("!")
+								|| habitacionTemp.get(filaC-1).get(colC).equals("@")
+								|| habitacionTemp.get(filaC-1).get(colC).equals("+"))) {
 					
 					libreAbajo(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
 				}
@@ -124,7 +130,9 @@ public class FormarHabitacion {
 						|| habitacionTemp.get(filaC - 1).get(colC).equals("@")
 						|| habitacionTemp.get(filaC - 1).get(colC).equals("+"))
 						&& (habitacionTemp.get(filaC + 1).get(colC).equals("-")
-								|| habitacionTemp.get(filaC + 1).get(colC).equals("!"))) {
+								|| habitacionTemp.get(filaC + 1).get(colC).equals("!")
+								|| habitacionTemp.get(filaC+1).get(colC).equals("@")
+								|| habitacionTemp.get(filaC+1).get(colC).equals("+"))) {
 					
 					libreArriba(habitaciones, caminos, utilizada, habitacionesAux, caminosAux, filaC, colC);
 				}
